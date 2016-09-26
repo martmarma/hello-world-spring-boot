@@ -17,10 +17,17 @@ public class HelloController {
         return "Hello World";
     }
 
-    private String form = "<form action=\"/incomingPOST\"><input name=\"username\" id=\"username\" type=\"text\"/><input type=\"submit\" value=\"press me\"/></form>";
-    @RequestMapping("/greeting")
-    public String greeting() {
-        return form;
+    private String formPost = "<form action=\"/incomingPOST\"><input name=\"username\" id=\"username\" type=\"text\"/><input type=\"submit\" value=\"press me\"/></form>";
+    @RequestMapping("/greetingPost")
+    public String greetingPost() {
+        return formPost;
+    }
+
+
+    private String formGet = "<form action=\"/incomingGET\"><input name=\"username\" id=\"username\" type=\"text\"/><input type=\"submit\" value=\"press me\"/></form>";
+    @RequestMapping("/greetingGET")
+    public String greetingGet() {
+        return formGet;
     }
 
     @RequestMapping(path = "/incomingPOST", method = RequestMethod.POST) //POST request
@@ -28,7 +35,7 @@ public class HelloController {
         return "Hello " + name + "!";
     }
 
-    @RequestMapping(path = "/{incomingGET}", method = RequestMethod.GET) //GET request
+    @RequestMapping(path = "/incomingGET", method = RequestMethod.GET) //GET request
     public String incomingGET(@RequestParam(value="username", required=false, defaultValue="User") String name, Model model) {
         return "Hello " + name + "!";
     }
